@@ -10,7 +10,7 @@ class QuoteParser:
         self.parent = parent
 
     def __repr__(self):
-        return f'<Quote (self.content), by {self.author}>'
+        return f'<Quote {self.content}, by {self.author}>'
 
     @property
     def content(self):
@@ -18,11 +18,11 @@ class QuoteParser:
         return self.parent.select_one(locator).string
 
     @property
-    def content(self):
+    def author(self):
         locator = QuoteLocators.AUTHOR
         return self.parent.select_one(locator).string
 
     @property
-    def content(self):
+    def tags(self):
         locator = QuoteLocators.TAGS
-        return self.parent.select_one(locator).string
+        return [e.string for e in self.parent.select(locator)]
